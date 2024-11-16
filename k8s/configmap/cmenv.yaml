@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  var1: val1
+  var2: val2
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cmenv

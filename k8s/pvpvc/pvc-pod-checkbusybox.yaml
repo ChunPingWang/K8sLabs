@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: pvc-pod-busybox
+  name: pvc-pod-checkbusybox
+spec:
+  containers:
+  - args:
+    - /bin/sh
+    - -c
+    - sleep 3600
+    image: busybox
+    name: pvc-pod-busybox
+    resources: {}
+    volumeMounts: #
+    - name: pvc-4g-in-pod # 定義在 volumes 的名稱
+      mountPath: /etc/pvc-4g # Pod 裡的 Linux 的掛載點
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+  volumes: #
+  - name: pvc-4g-in-pod # volume 在 Pod 的名稱
+    persistentVolumeClaim: #
+      claimName: pvc-4g # PVC 的名稱 
+status: {}
