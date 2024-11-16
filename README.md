@@ -1,10 +1,4 @@
 ---
-title: Kubernetes 容器管理平台基本操作
-tags: [Documentation, Kubernetes, Tutorials]
-
----
-
----
 title: 'Kubernetes 容器管理平台基本操作'
 disqus: hackmd
 ---
