@@ -35,6 +35,9 @@ https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/
 https://www.virtualbox.org/wiki/Downloads
 > 安裝 Vagrant
 https://www.vagrantup.com/
+Vagrant是一款用於構建及組態虛擬開發環境的軟體，採用Ruby編寫，主要以命令列方式執行。
+其主要使用Oracle VirtualBox提供虛擬化系統，與Chef，Salt，Puppet等環境組態管理軟體搭配使用，可以實現快速搭建虛擬開發環境。
+
 > 下載 Labs 設定
 ```gherkin=
 git clone https://github.com/ChunPingWang/K8sLabs
