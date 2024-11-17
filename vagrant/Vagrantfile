@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # 增加開機超時時間（預設是 300 秒）
+  config.vm.boot_timeout = 600  # 設為 600 秒（10 分鐘）
+  
+  # 使用 Ubuntu 22.04
+  config.vm.box = "ubuntu/jammy64"
+  
+  # 設置虛擬機的名稱
+  config.vm.hostname = "k8s-lab"
+  
+  
+  # Provision script
+  config.vm.provision "shell", inline: <<-SHELL
+    # 更新系統
+    sudo apt-get update
+    sudo apt-get upgrade -y
+
+    # 安裝必要軟件
+    sudo apt-get install -y docker.io
+    sudo curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
+    sudo chmod +x /usr/local/bin/kind
+    sudo curl -Lo /usr/local/bin/kubectl https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+    sudo chmod +x /usr/local/bin/kubectl
+
+    # 設置用戶密碼
+    echo "vagrant:P@ssw0rd" | sudo chpasswd
+    sudo usermod -aG docker vagrant
+
+    # 添加 alias 到 .bashrc
+    echo 'alias k=kubectl' >> /home/vagrant/.bashrc
+    
+    # 以 vagrant 用戶身份創建集群
+    su - vagrant -c "kind create cluster"
+
+    cd /home/vagrant
+    git clone https://github.com/ChunPingWang/K8sLabs.git
+    mv K8sLabs workspace
+
+    cd /home/vagrant/workspace/k8s
+
+  SHELL
+
+  # 讓虛擬機更有效地處理 Docker 容器
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "16384"
+    vb.cpus = 4
+  end
+end
+
