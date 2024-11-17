@@ -1,10 +1,4 @@
 ---
-title: Kubernetes 容器管理平台基本操作
-tags: [Documentation, Kubernetes, Tutorials]
-
----
-
----
 title: 'Kubernetes 容器管理平台基本操作'
 disqus: hackmd
 ---
@@ -33,6 +27,39 @@ https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/
 
 ### K8s 基本架構
 ![image](https://hackmd.io/_uploads/HyyuQgAk1x.png)
+
+
+## Labs 環境準備
+> 安裝 VirtualBox
+https://www.virtualbox.org/wiki/Downloads
+> 安裝 Vagrant
+https://www.vagrantup.com/
+> 下載 Labs 設定
+```gherkin=
+git clone https://github.com/ChunPingWang/K8sLabs
+
+cd K8sLabs/vagrant
+
+# 下載虛擬機並啟動
+vagrant up
+
+# 啟動後登入虛擬機
+vagrant ssh
+```
+> vagrant 簡易教學
+```gherkin=
+# 下列指令需在 ~/workspace/vagrant 下執行
+cd ~/workspace/vargant
+
+# 暫停虛擬機
+vagrant suspend
+
+# 啟動暫停的虛擬機
+vagrant resume
+
+# 刪除不使用的虛擬機
+vagrant destroy
+```
 
 ## Kind 基本操作
 ![image](https://hackmd.io/_uploads/HkXCWVqe1x.png)
