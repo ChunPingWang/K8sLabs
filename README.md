@@ -17,6 +17,7 @@ Kubernetes 容器管理平台基本操作
 https://www.opensourcerers.org/2021/12/06/kubernetes-is-a-platform-for-building-platforms/
 ```
 ### Kubernetes 的前身 BORG
+> Kubernetes三位發明人Craig McLuckie, Joe Beda 與 Brendan Burns，時任Google研發部門，以Side Project 的形式，比照BORG的設計哲學研發出開源專案 Kubernetes
 ![截圖 2024-10-15 下午2.22.45](https://hackmd.io/_uploads/HkSH5KoJkx.png)
 ```gherkin=
 https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/
