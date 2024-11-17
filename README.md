@@ -21,7 +21,7 @@ https://www.opensourcerers.org/2021/12/06/kubernetes-is-a-platform-for-building-
 ```gherkin=
 https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/
 ```
-> BORG在電影星際爭霸戰中，是可以用心智與大腦控制電子設備，Google的Infrastructure 的管理核心，即以此為名
+> BORG在電影星際爭霸戰中，可以用心智與大腦控制電子設備的外星種族；Google的Infrastructure 的管理核心，即以此為名
 ![image](https://hackmd.io/_uploads/rJwVjtiJkg.png)
 
 
