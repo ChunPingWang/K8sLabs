@@ -1,33 +1,48 @@
-# Kubernetes 容器管理平台基本操作
+---
+title: 'Kubernetes 容器管理平台基本操作'
+disqus: hackmd
+---
+
+Kubernetes 容器管理平台基本操作
+===
+
+## Table of Contents
+
+[TOC]
 
 ## 為何需要 Kubernetes
 > coreOS的創辦人 Kelsey Hightower 說 : Kubernetes 是一個用來建置平台的平台
-
 ![image](https://hackmd.io/_uploads/rkeJs5Yik1l.png)
-
-[參考資料](https://www.opensourcerers.org/2021/12/06/kubernetes-is-a-platform-for-building-platforms/)
-
-## Kubernetes 的前身 BORG
-![截圖](https://hackmd.io/_uploads/HkSH5KoJkx.png)
-
-[研究論文](https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/)
-
-> BORG在電影星際爭霸戰中，是可以用心智與大腦控制電子設備，Google的Infrastructure 的管理核心，即以此為名
-
+```gherkin=
+https://www.opensourcerers.org/2021/12/06/kubernetes-is-a-platform-for-building-platforms/
+```
+### Kubernetes 的前身 BORG
+> Kubernetes三位發明人Craig McLuckie, Joe Beda 與 Brendan Burns，時任Google研發部門，以Side Project 的形式，比照BORG的設計哲學研發出開源專案 Kubernetes
+![截圖 2024-10-15 下午2.22.45](https://hackmd.io/_uploads/HkSH5KoJkx.png)
+```gherkin=
+https://research.google/pubs/large-scale-cluster-management-at-google-with-borg/
+```
+> BORG在電影星際爭霸戰中，可以用心智與大腦控制電子設備的外星種族；Google的Infrastructure 的管理核心，即以此為名
 ![image](https://hackmd.io/_uploads/rJwVjtiJkg.png)
 
-## K8s 基本架構
+
+### K8s 基本架構
 ![image](https://hackmd.io/_uploads/HyyuQgAk1x.png)
 
+
 ## Labs 環境準備
+> 安裝 VirtualBox
+https://www.virtualbox.org/wiki/Downloads
 
-### 安裝必要工具
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
-- [Vagrant](https://www.vagrantup.com/)
+> 安裝 Vagrant
+https://www.vagrantup.com/
+Vagrant是一款用於構建及組態虛擬開發環境的軟體，採用Ruby編寫，主要以命令列方式執行。
+其主要使用Oracle VirtualBox提供虛擬化系統，與Chef，Salt，Puppet等環境組態管理軟體搭配使用，可以實現快速搭建虛擬開發環境。
 
-### 下載 Labs 設定
-```bash
+> 下載 Labs 設定
+```gherkin=
 git clone https://github.com/ChunPingWang/K8sLabs
+
 cd K8sLabs/vagrant
 
 # 下載虛擬機並啟動
@@ -36,9 +51,8 @@ vagrant up
 # 啟動後登入虛擬機
 vagrant ssh
 ```
-
-### Vagrant 簡易教學
-```bash
+> vagrant 簡易教學
+```gherkin=
 # 下列指令需在 ~/workspace/vagrant 下執行
 cd ~/workspace/vargant
 
