@@ -19,7 +19,8 @@ Vagrant.configure("2") do |config|
     sudo apt-get upgrade -y
 
     # 安裝必要軟件
-    sudo apt-get install -y docker.io
+    sudo apt-get install -y docker.io zsh git fonts-powerline
+    
     sudo curl -Lo /usr/local/bin/kind https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64
     sudo chmod +x /usr/local/bin/kind
     sudo curl -Lo /usr/local/bin/kubectl https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
@@ -32,6 +33,29 @@ Vagrant.configure("2") do |config|
     # 添加 alias 到 .bashrc
     echo 'alias k=kubectl' >> /home/vagrant/.bashrc
     
+    # 安裝 Oh My Zsh 
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
+    
+    # 安裝 Powerlevel10k 主題 
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc 
+
+    # 安裝字體 
+    su - vagrant -c "mkdir -p /home/vagrant/.local/share/fonts" 
+    cd /home/vagrant/.local/share/fonts 
+    curl -LO https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip 
+    unzip Hack.zip 
+    fc-cache -fv
+
+    # 設置 zsh 為預設的 shell 
+    sudo chsh -s $(which zsh) vagrant
+    
+    echo 'alias k=kubectl' >> /home/vagrant/.zshrc 
+    echo 'export PATH=$PATH:/usr/local/bin' >> /home/vagrant/.zshrc
+
+    # 設置 Powerlevel10k 主題配置
+    #echo 'POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)' >> /home/vagrant/.p10k.zsh
+    #echo 'POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs)' >> /home/vagrant/.p10k.zsh
+
     # 以 vagrant 用戶身份創建集群
     su - vagrant -c "kind create cluster"
 
