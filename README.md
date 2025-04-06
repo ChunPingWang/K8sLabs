@@ -173,6 +173,37 @@ kubectl get pods
 > 2. 一個 Pod 可以部署一個或一個以上容器
 > 3. 通常一個 Pod 只部署一個容器
 ![image](https://hackmd.io/_uploads/BJIQZ4ce1x.png)
+> 4. 部署一個Pod的循序圖
+```mermaid
+sequenceDiagram
+    actor User
+    box "Master Node" #LightBlue
+        participant kubectl
+        participant K8s API Server
+        participant Scheduler
+        participant Controller Manager
+    end
+    box "Worker Node" #LightGreen
+        participant Kubelet
+        participant Container Runtime
+    end
+
+    User->>kubectl: kubectl apply -f deployment.yaml
+    kubectl->>K8s API Server: Send Deployment spec (via REST API)
+    K8s API Server-->>kubectl: Acknowledgement (201 Created)
+
+    K8s API Server->>Controller Manager: Create Deployment → ReplicaSet → Pod
+    Controller Manager-->>K8s API Server: Pod resource created
+
+    K8s API Server->>Scheduler: New Pod waiting to be scheduled
+    Scheduler->>K8s API Server: Assign Node to Pod
+
+    K8s API Server->>Kubelet: Notify assigned Worker Node to create Pod
+    Kubelet->>Container Runtime: Pull image & start container
+    Container Runtime-->>Kubelet: Container running
+    Kubelet-->>K8s API Server: Pod status update (Running)
+```
+
 
 > 方法1. 以指令直接部署鏡像 nginx 至pod
 ```gherkin=
