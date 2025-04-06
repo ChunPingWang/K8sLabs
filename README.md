@@ -1,9 +1,9 @@
 ---
-title: 'Kubernetes 容器管理平台基本操作'
+title: 'Kubernetes 容器管理平台工作坊'
 disqus: hackmd
 ---
 
-Kubernetes 容器管理平台基本操作
+Kubernetes 容器管理平台工作坊
 ===
 
 ## Table of Contents
